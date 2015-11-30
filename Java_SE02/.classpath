@@ -1,0 +1,16 @@
+package day02;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+/**
+ * 写文件
+ * @author tarena
+ *
+ */
+public class Exercise {
+	public static void main(String[] args) throws IOException {
+		File file = new File("la.dat");
+		if(!file.exists()){
+			file.creat

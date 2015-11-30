@@ -1,0 +1,261 @@
+Object
+  toString()方法
+  1) 返回对象文本描述
+  2) 被很多API默认调用。
+  3) 建议重写
+  
+  equals 和 hashCode
+  1) 一般一起重写
+  2) hashCode 用于散列表算法(以后会讲到)
+  3) equals用于比较对象是否相等
+  
+  == 与 equals
+  1) == 只是比较变量的值，用于比较对象
+  2) 比较对象要使用equals方法(需要重写)
+  3) Object默认的equals方法的比较规则同 ==
+  4) Java API几乎都重写了 toString equals hashCode
+     如：String 需要使用equals方法比较相等
+     
+ String 类的特点
+  1) 字符串是由字符数组组成的，或者说字符串封装了一个字符数组
+     字符串的肚子里面是字符串数组
+  2) 字符串对象是不可改变的,字符串引用可以重新赋值
+  3) Java中为了提高性能，静态字符串(字面量/常量/常量连接的结果)
+     在静态池中创建，尽量使用同一个对象，重用静态字符串
+  == 比较引用变量值，引用变量值相等，意味着是同一个对象的引用
+  
+  String API
+  1) String提供了与字符串有关的算法封装
+  2) String API 返回值与原有字符串不同时候是新对象
+  3) String API 不会改变原字符串对象
+  
+   收入   支出       余额 
+###500｜   0  ｜   ###500｜
+        ###100｜   ###400｜
+  leftPad("500", 6, '#') -> "###500"
+  
+ Object
+    1) 类默认继承于Object，所以类的最终父类型是Object
+       体现：一切皆对象
+       Object 定义的变量可以引用任何类型的实例
+       Object 成为继承根
+    2) Object 定义了很多基本方法，被子类型继承
+    
+      toString() 建议重写，返回这个对象的文本描述
+      equals() 建议重写，比较两个对象是否相等
+         == 只能比较变量值不能用于比较对象是否相等
+      hashCode() 建议与equals一起重写
+        当两个对象相等的时候，hashCode()返回值一样
+        当两个对象不相等的时候，hashCode()返回值尽量不同
+  
+  String 字符串
+    1) 是系统核心的数据输入输出类！凡是界面上的文本信息都是String
+    2) 字符串对象是不可改变的！(String使用不变模式设计)
+    3) String{ char[] + char[] 有关的算法！}
+       完全可以使用char数组加for循环来替代String API方法
+       {char[] +算法} 可以优化很快编码量大
+       String API性能很好，编码简洁
+       
+      Tetromino{Cell[] +Cell[] 算法}
+      Stack(数据 + 算法)
+    4) “静态字符串”的优化现象
+     4.1) “静态字符串”字面量，常量，和字面量常量的表达式
+       注意：字面量常量的表达式在编译期间运算，优化了字面量
+     4.2) 动态字符串，都是在运算期间追踪创建，不参与静态优化
+       动态字符串：使用new运算创建，变量连接结果 
+        
+  典型试题：
+     String s = new String("ABC" + "123");
+     如上代码描述正确的是：
+     A 运算期间会创建两个字符串
+     B 运算期间会创建两个对象
+     C 运算期间会创建一个字符串
+	 D 运算期间会创建一个对象  
+    5) 字符串常用的API方法(算法)
+      length() 返回字符串的长度
+      charAt()
+      toUpperCase()
+      indexOf()
+      endsWith()
+      startsWith()
+      substring()
+      trim()
+    
+  正则表达式：
+    1) 是字符串的检索匹配规则
+    如：
+    regex(匹配规则):hi
+    被检索的文本(字符串)：hi,I'm tom in china
+    检索结果：Found "hi" starting index 0 ending index 2
+             Found "hi" starting index 15 ending index 17
+    2) 正则表达式使用广泛：eclipse linux java c# PHP...
+    3) 是字符序列匹配规则
+      如：hi 表示匹配两个字符的序列，第一个是h第二个是i
+    4) 字符集：匹配多个字符的某一个
+      如：h[ijk]表示匹配两个字符的序列，第一个是h第二个i/j/k
+          [0123456789] 表示匹配1个字符，是数字字符
+       
+      数字字符集：[0123456789] == [0-9] == [\d]
+      检索邮政编码：
+         [0-9][0-9][0-9][0-9][0-9][0-9]
+         \d\d\d\d\d\d
+             /*   
+         Enter your regex: [0-9][0-9][0-9][0-9][0-9][0-9]
+         Enter input string to search: 邮编是232312
+         Found "232312" starting index 3 ending index 9
+         
+         Enter your regex: \d{6}
+		 Enter input string to search: 邮编是2323123
+   	  	 Found "232312" starting index 3 ending index 9
+        */
+        
+        预定义(缩写)字符集
+           \d 数字字符
+           \w 单词字符 == [a-zA-Z0-9_]
+           \s 空白字符
+            . 表示任何一个字符
+            
+           \D 非数字
+           \S 非空白
+           \W 非单词字符
+    
+    5) 数量词
+      X{n}     n个X
+      X{n,m}   n到m个X
+      X{n,}    n个以上X
+      缩写(预定义)数量词
+      ? == {0,1}可有可无
+      + == {1,}
+      * == {0,}
+  
+    6) 边界匹配
+      ^ 字符串开始
+      $ 字符串结束
+      
+    详细参考：java.util.regex.Pattern
+    
+    7) 正则表达式的应用：
+      表单验证：
+      用户名规则：从头到尾连续8到10个单词字符
+         正则规则：^\w{8,10}$
+                  ^\d{11}$
+         IP地址规则：\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+                    \d{1.3}(\.\d{1,3}){3}
+         电话号：+86 15023456897
+                (\+86)?\s*\d{11}
+                (\+86)?\s+\d{11}
+    
+    8) 分组  \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+            等同于 \d{1.3}(\.\d{1,3}){3}
+    
+    9) 特殊字符转义：
+      匹配. 使用\.
+      匹配[ 使用\[
+      匹配| 使用\|
+      匹配\ 使用\\
+      
+    10) java String 中对正则表达式的支持
+     match(正则表达式)
+     将一个字符串与正则表达式进行匹配，如果匹配成功就返回true，否则返回false
+     
+     String name = "hi1234567";
+     boolean pass = name.match("^\\w{8,10}$");//true
+     String name = "hi167";
+     boolean pass = name.match("^\\w{8,10}$");//false
+     
+    11) 字符串拆分
+      数据：“5, tom, 5, tom@tom.com, 119”
+      拆分为：["5", "tom", "5", "tom@tom.com", "119"]
+      
+      str.split(",\\s?")
+      
+    12) String matches split replaceAll
+     
+  StringBuilder 动态(可变)字符串
+  String 是不可改变的字符串
+  
+  String{char[] + 算法(不改变内容，经常返回新的字符串)}
+  
+  StringBuilder{char[] + 算法(改变了char[]的内容，当容量不够时候，进行扩容操作)}
+  
+  Tetromino{Cell[] + 算法}
+  
+  StringBuilder 类的总结
+  1) Java的字符串连接的过程是利用StringBuilder实现的
+    String s = "AB";
+    String s1 = s + "DE";
+    //String s1 = new StringBuilder(s).append("DE").toString()
+    
+    s1 += "De";
+    s1 += "De";
+    
+  2) 建议在大量字符计算时候利用StringBuilder完成。
+    简单说：StringBuilder的性能好于String
+  3) 如下情形，不需要使用StringBuilder
+   3.1) 一行的连接运算，java会使用一个StringBuilder实现
+     ss = s1+s2+s3+s4;
+     //ss = new StringBuilder(s1).append(s2)
+     //   .append(s3).append(s4).toString()
+   3.2) 静态字符串连接
+     String sql = "select boy from man" +
+        "where age<28 and age>20"　+
+        "and salary>10000"
+        
+  StringBuffer PK StringBuilder
+  比较：StringBuffer 早于 StringBuilder 
+    StringBuffer 是线程安全的，同步处理的，性能稍慢
+    StringBuilder 是非线程安全的，并发处理的，性能稍快
+  
+  字符串总结：
+  1) Java中代表字符串的有：char[] String StringBuilder
+  2) char[] 只是代表字符数据，没有算法，可以自己实现。
+     如果优化的好，性能最优！开发效率低
+  3) String 是不可变字符串，是最常用的字符串，界面文本数据
+    就是使用String输出的。API经常返回String对象，性能稍差。
+    如： System.out.println(120);
+       实际上 System.out.println(String.valueOf(120));
+  4) StringBuilder 是可变字符串，字符串的内容计算，建议采用
+     StringBuilder 实现，性能好
+     
+  Java 中的时间
+   1) 是一个long类型的整数，是GMT 1970元旦到现在累计毫秒数
+   2) java.util.Date 封装了公元历法 算法
+   Data{ long + 公元历法 算法}
+      缺点：y2k 千年问题，以及地区和国家问题
+      
+      替代方案：Calendar 地区和国家问题 适合时间计算
+      
+   3) Data API 方法：
+     getYear();有2000年问题，返回两位数年份
+       如：1998返回 98  1999返回99
+           2000返回 100  2013返回113
+           98 + 1900 = 1998
+           99 + 1900 = 1999
+           100 + 1900 = 2000
+     getMonth();
+     getDay()
+     getTime() 返回的是long毫秒数
+     setTime(long)修改时间秒数
+     
+     测试案例：
+       1) 当前时间测试 
+       2) 时间原点(long 0)测试
+         setTime(0)
+       3) 思考如何表示明天？
+         明天 = 今天毫秒数 + 一天毫秒数
+         setTime(明天)
+       4)SimpleDateFormat 日期时间输出的工具类，非常方便
+       SimpleDateFormat fmt = 
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  
+       5) 时间的计算原理：是毫秒数的 + - 与历法规则有关！
+  
+  SimpleDateFormat的作用
+  1.将Date对象转换为特定格式的字符串   format方法
+  2.将字符串按照特定格式转换为Date对象  parse方法
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,93 @@
+HashSet存取元素需要依靠元素的hashCode()方法的返回值
+hashCode()方法是Object定义的方法
+
+public int hashCode(){}
+重写该方法的时候要注意：
+1.应与equals方法一致：当两个对象equals方法比较为true,
+hashCode()方法返回数字应该相同
+2.不同的对象hashCode()值应尽量避免相同
+
+数据结构Map
+Map接口定义的集合包含两部分
+key-value 以键值对应的形式保存元素可以把map看成是一个多行两列的表格
+
+根据内部实现不同，我们常使用HashMap也有通过二叉树实现的TreeMap
+在Map中，key是不重复的
+
+存取数据方法
+V put(K k, V v):根据给定的key存放给定的value
+                若使用已存在的key存放元素，那么就是替换value操作，
+                返回值则是被替换元素，否则返回null
+
+V get(Object k):根据给定的key获取对应的value,若key在map中不存在，则返回null
+
+boolean containKey(Object k)
+查看当前map中是否有给定的key
+
+boolean containsValue(Object v)
+查看当前map中是否有给定的value
+
+HashMap的性能
+Capacity 容量：HashMap中三列数组的大小
+
+initial capacity 初始容量：
+创建HashMap时，默认创建的散列数组的大小，默认值为16
+
+size大小:HashMap中存放的数据量
+loadfactor加载因子：加载因子的默认值为0.75，
+该值是通过size/capacity得到
+当存储的数据量超过了0.75时，就会对散列数组进行扩容，
+并对hashmap中原来的所有元素重新计算并存入新数组
+
+遍历map
+遍历map有三种方式
+获取所有的key
+获取所有的value：不常用
+获取所有的key-value
+
+设计模式
+设计模式简单的说就是：模式化的解决方案
+
+创建型模式：
+单例模式，工厂模式
+
+结构型模式：
+装饰模式，代理模式(静态代理，动态代理)
+
+行为型模式
+模板模式，迭代器模式
+例如：Spring框架
+
+单例模式(也称单实例模式)
+使用该模式设计的类，全局应保证只有一个实例
+步骤：
+1.私有化构造方法
+2.提供一个公有的 静态的 可以获取当前类型的实例的 方法
+3.定义一个私有的 静态的当前类型的实例，供步骤2的方法返回
+             
+模板模式
+定义一个操作中的算法过程的骨架，而将部分细节操作延迟到子类去实现
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

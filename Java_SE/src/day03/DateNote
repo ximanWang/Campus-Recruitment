@@ -1,0 +1,97 @@
+Java 中的时间
+   1) 是一个long类型的整数，是GMT 1970元旦到现在累计毫秒数
+   2) java.util.Date 封装了公元历法 算法
+   Data{ long + 公元历法 算法}
+      缺点：y2k 千年问题，以及地区和国家问题
+      
+      替代方案：Calendar 地区和国家问题 适合时间计算
+      
+   3) Data API 方法：
+     getYear();有2000年问题，返回两位数年份
+       如：1998返回 98  1999返回99
+           2000返回 100  2013返回113
+           98 + 1900 = 1998
+           99 + 1900 = 1999
+           100 + 1900 = 2000
+     getMonth();
+     
+     getDay()
+     getTime() 返回的是long毫秒数
+     setTime(long)修改时间秒数
+     
+     测试案例：
+       1) 当前时间测试 
+       2) 时间原点(long 0)测试
+         setTime(0)
+       3) 思考如何表示明天？
+         明天 = 今天毫秒数 + 一天毫秒数
+         setTime(明天)
+       4)SimpleDateFormat 日期时间输出的工具类，非常方便
+       SimpleDateFormat fmt = 
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  
+       5) 时间的计算原理：是毫秒数的 + - 与历法规则有关！
+  
+  SimpleDateFormat的作用
+  1.将Date对象转换为特定格式的字符串   format方法
+  2.将字符串按照特定格式转换为Date对象  parse方法
+  
+  DateFormat类
+  是SimpleDateFormat的父类，创建实例只需要调用其提供的一个静态方法getInstance()
+  这种方法是工厂方法  
+  
+  Calendar 类
+  可以方便的进行日期的计算 
+  获取日期中的信息时.考虑了时区等问题
+  
+  创建实例通常可以使用提供的工厂方法
+  getInstance()
+  该方法自动根据当前系统所处地区创建对应时区的实现类。
+  
+  通过Calendar可以方便的设置一个时间
+  方法是：set(int field, int value);
+  
+  获取Calendar所描述的时间的某个信息，可以调用get(int field)方法获取
+  
+  计算时间的方法：add(int field, int value)
+  将给定的时间单位累加给定的值并使当前calendar代表这个时间		
+  
+  包装类
+  因为java中有8个基本数据类型，他们不是以对象的形式存在，他们自然也不是Object的子类。
+  那么在参与面向对象开发是会遇到很多阻碍，为此，java提供了针对8种基本类型数据的包装类
+  使之可以就按基本数据转化为对象形式存在，参与面向对象的开发。
+  
+  基本类型            包装类
+  int                 Integer
+  char                Character
+  byte                Byte
+  short               Short                                            
+  long                Long
+  float               Float
+  double              Double
+  boolean             Boolean
+  
+  包装类要掌握如何从字符串转换为对应的基本类型数据
+  
+  知道包装类的作用：让基本类型数据可以参与面向对象开发
+  
+  知道在java 1.4的时候不能使用自动拆装箱特性
+  
+  BigDecimal类
+  当我们需要对小数作精确计算时，若double都不足以描述时，就需要使用该类。
+  该类可以对小数做精确计算
+  
+  BigInteger
+  用于保存更长的整数，取值范围只受内存限制
+  
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

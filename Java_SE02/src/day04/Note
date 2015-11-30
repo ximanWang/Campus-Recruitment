@@ -1,0 +1,45 @@
+PrintWriter
+带自动刷新的缓冲字符输出流
+
+常用的构造方法
+PrintWriter(File file)
+创建一个向给定文件写数据的PrintWriter
+该种创建方式是创建了一个不自动行刷新的流
+
+PrintWriter(OutputStream out)
+创建一个不具备自动行刷新的基于给定字节输出流进行
+写操作的PrintWriter
+
+PrintWriter(OutputStream out, boolean autoFlush)
+创建一个具备自动行刷新的基于给定字节输出流进行写操作的PrintWriter
+当具有自动行刷新后，每当我们通过该流写一行字符串后都会自动flush()
+清空缓冲区并作一次写操作
+
+PrintWriter(Writer w)
+PrintWriter(Writer w, boolean autoFlush)
+PrintWriter(String FilePath)
+根据给定的文件路径，创建基于该文件进行写操作的PrintWriter
+
+DataInputStream
+DataOutputStream
+写一个基本类型数据的基本过程
+1 将一个基本数据类型转化为相应的字节
+2 将这些字节有序的写入文件保存
+
+将程序中的数据转化为对应的字节的过程称之为“序列化”
+这里的第1步实际上就是将基本类型数据进行了序列化，
+我们称之为“基本类型序列化”
+第2步中我们将数据写入硬盘做长久保存的过程称之为：“数据持久化”
+
+将字节转换为数据的过程叫“反序列化”
+可以对对象进行序列化与反序列化的流
+ObjectInputStream
+读取字节并转换为对象的输入流(反序列化)
+ObjectOutputStream
+将对象转换为字节后并写出的流(序列化)
+
+
+
+
+
+

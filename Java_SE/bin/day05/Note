@@ -1,0 +1,68 @@
+增强for循环  新循环 1.5后出现的
+新循环的作用是简化遍历集合和数组的操作，换言之新循环就是为了
+集合和数组使用的
+for(ELEMENT_TYPE e : LIST_ARRAY){}
+
+List集合的subList方法
+ 获取当前集合的子集
+ 
+List subList(int start, int end)
+
+数据结构
+队列(Queue)
+队列用于存储一组数据，但是对于存取方式有一定的要求，
+必须遵循先进先出的原则(FIFO)
+First Input First Output
+
+Queue常用于子类实现LinkedList
+队列的方法：
+boolean offer(E e):向队列末尾追加一个元素追加成功返回true
+E poll():从队首取出元素(取出后就从队列中删除了该元素)
+E peek():获取队首元素，但不删除
+
+栈结构(Deque)
+Deque是Queue的子接口
+使用双端队列时，我们只允许元素都一个方向进出，则实现了栈结构，
+栈结构存取元素要本着先进后出的原则(FILO)
+First Input Last Output
+
+LinkedList实现了Deque
+
+Comparable接口
+在对数组或者集合元素进行排序时，首先要确定比较大小，有了人结论
+才可以进行排序，而如何比较大小，则需要是实现该接口，并实现其中
+的抽象方法来定义比较规则
+Arrays在对数组进行排序时，比较每个元素大小时就会调用这些元素的
+compareTo方法进行比较，而这个方法就是Comparable接口定义的
+
+排序集合：
+Collections集合的工具类(Collection定义了集合相关特征的接口)
+其中有一个方法是sort，用于排序集合
+
+java中很多类都实现了Comparable接口
+
+像字符串这样JDK提供的类，他们自身已经定义了比较规则，但是
+当比较规则不满足我们对排序要求时，我们需要另外指定比较规则
+例如：按照字符串中字符的多少进行比较
+
+Collections提供了一个重载的排序方法
+sort(Collections c, Comparable com)
+
+Comparable接口
+比较器，用来定义比较规则
+当调用Collections的sort(Collections c, Comparable com)方法
+时，该方法在排序集合时，不使用集合中元素自身的比较规则，而是使用
+我们提供的比较器中的比较规则进行比较后再进行排序的
+
+Set集合
+不重复集，在set集合中不存在两个元素equals为true的
+Set集合的常用实现类
+HashSet:使用散列表算法实现Set
+TreeSet:使用二叉树实现Set
+
+
+
+
+
+
+

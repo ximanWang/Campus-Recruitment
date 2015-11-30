@@ -1,0 +1,35 @@
+package day02;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+/**
+ * 读写文件
+ * @author tarena
+ *
+ */
+public class RandomAccessFileDemo03 {
+	public static void main(String[] args)throws IOException{
+		File file = new File("rw.dat");
+		if(!file.exists()){
+			file.createNewFile();
+		}
+		/**
+		 * 向文件中写数据
+		 */
+		RandomAccessFile raf = new RandomAccessFile(file,"rw");
+		/**
+		 * 输出游标的位置
+		 * RandomAccessFile是基于游标进行读写操作的
+		 * 每读一个字节，或写一个字节都是基于游标当前指向的位置进行的，
+		 * 而当读写了该字节后，游标自动向后移动一个字节
+		 */
+		System.out.println(raf.getFilePointer());
+		//写一个int值
+		raf.writeInt(123123);		
+		System.out.println(raf.getFilePointer());
+		
+		//写一个double值
+		raf.writeDouble(12.34);
+		System.out.println(raf.getFilePoint
